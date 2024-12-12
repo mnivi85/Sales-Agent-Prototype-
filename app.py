@@ -6,14 +6,15 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 
 
 # Model and Agent tools
-llm =  ChatGroq(api_key=st.secrets.get("GROQ_API_KEY"))
+llm =  ChatGroq(api_key=st.secrets.get("GROQ_API_KEY"), model="llama3-8b-8192")
 search = TavilySearchResults(max_results=2)
 parser = StrOutputParser()
 # tools = [search] # add tools to the list
 
 # Page Header
-st.title("Smart Compost Bin Assistant Agent")
-st.markdown("Assistant Agent Powered by Groq for Smart Compost Bin insights.")
+st.title("AI Sales Assistant Agent")
+st.markdown("Assistant Agent Powered by Groq for product marketing.")
+
 
 
 # Data collection/inputs
@@ -57,36 +58,28 @@ Generate a report including:
 1. The target company's strategy and recent activities.
 2. Competitors' presence and their relation to the target company.
 3. Key decision-makers at the target company.
-4. A tailored pitch strategy for the product.
-5."Act as a sales agent crafting a professional and persuasive pitch for Unilever. The goal is to sell the Smart Compost Bin, an advanced and eco-friendly waste management solution.
-
-Unilever is committed to sustainability, waste reduction, and achieving net-zero goals, making them an ideal target customer. The pitch should:
-
-Emphasize the features and benefits of the Smart Compost Bin tailored for Unilever's corporate needs.
-Highlight its superior performance compared to competitors like Lomi by Pela and Vitamix FoodCycler.
-Address Unilever’s sustainability goals, including waste reduction, energy efficiency, and community engagement.
+4. A tailored pitch strategy for the product name.
+5. "Act as a sales agent crafting a professional and persuasive pitch for [Target Company]. The goal is to sell [Product Name], an innovative solution designed to address [specific problem or need].
+[Target Company] is known for its commitment to [specific goals or values, e.g., sustainability, innovation, efficiency], making them an ideal customer for this product. The pitch should:
+Emphasize the features and benefits of [Product Name] tailored for [Target Company]'s needs.
+Highlight its superior performance compared to competitors like [Competitor A] and [Competitor B].
+Address the company’s goals, including [specific goals such as cost reduction, environmental impact, or improving operational efficiency].
 Include a comparison table showcasing key differentiators.
-Conclude with a call to action, inviting Unilever to pilot the product in their facilities.
+Conclude with a compelling call to action, inviting [Target Company] to pilot the product in their operations.
 Use the following product details:
-
-Smart Compost Bin Features:
-
-Processes food waste in 3-5 hours (faster than Lomi and Vitamix).
-AI-powered insights into waste patterns.
-Scalable design for high-volume usage (suitable for corporate cafeterias and offices).
-Multi-layer odor control system with proprietary enzymes.
-30% more energy-efficient than competitors.
-Customizable branding and community engagement integration.
+[Product Name] Features:
+[Feature 1 and its benefit].
+[Feature 2 and its benefit].
+[Feature 3 and its benefit].
 Competitor Information:
+[Competitor A]: [Feature comparison].
+[Competitor B]: [Feature comparison].
+[Target Company] Goals:
+[Goal 1 and how the product addresses it].
+[Goal 2 and how the product supports it].
 
-Lomi by Pela: Household-focused, 20-hour processing time, carbon filter for odor control.
-Vitamix FoodCycler: Household-focused, 6-8 hours processing time, limited odor control.
-Unilever’s Sustainability Goals:
-
-Reduce landfill waste.
-Optimize ESG reporting with measurable waste reduction.
-Promote a circular economy and community engagement through waste repurposing.
-Create a professional pitch with clear sections for introduction, product advantages,include comparison with competitors, alignment with Unilever’s goals, and a compelling call to action."
+Draft and Create a structured pitch with sections for introduction, product advantages, competitor comparison, alignment with the company’s goals, and a call to action. close the pitch with thank you note and best regards, Sales Agent name."
+Ensure that all sources (e.g., articles, press releases) are included in the output.
 
 
 Provide the insights in a structured format.
@@ -107,7 +100,4 @@ st.success("Insights generated successfully!")
 
 # Display insights               
 st.markdown(company_insights)
-
-
-
 
